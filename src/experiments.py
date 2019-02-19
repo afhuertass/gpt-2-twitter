@@ -106,16 +106,8 @@ enc = encoder.get_encoder("117M")
 tww = TwittBrain(  enc  )
 
 print( "READY ")
+# here goes for example the user you want to follow and respond 
 track = ["@GPTResponser" ]
 twiiter_stream = Stream( auth , Listener() )
 twiiter_stream.filter( track = track )
-
-
-
-#ou  = tww.sample_sequence( "The men in black fleed throught the desert, and the gunslinger follow. " , 140)
-
-#for o in ou:
-	#print("asdadasdaaaaaaaaaaaaaaa")
-	#print( enc.decode(o) ) 
-	#print( enc.decode( o ).split(".")[1] )
 
