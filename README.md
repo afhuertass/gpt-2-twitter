@@ -1,3 +1,9 @@
+# What I did
+
+Just attach an small script that will use the available model 117M to serve twitts. 
+
+the script is src/experiments.py and to run in is required the tweepy library and also an twitter dev account. 
+
 # gpt-2
 
 Code and samples from the paper ["Language Models are Unsupervised Multitask Learners"](https://d4mucfpksywv.cloudfront.net/better-language-models/language-models.pdf).
