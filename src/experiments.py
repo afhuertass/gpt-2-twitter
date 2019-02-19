@@ -9,8 +9,7 @@ import tweepy
 from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy.streaming import StreamListener
-
-
+import re
 
 consumer_key = ''
 consumer_secret = ''
@@ -81,13 +80,27 @@ class Listener( StreamListener ):
 		# Twiit
 		#api.update_status()
 		obj  = json.loads( data )
+
 		text = obj["text"]
+
+		if len(text) >= 140 :
+			print("Extended")
+			text = obj["extended_tweet"]["full_text"]
+
+
 		user = obj["user"]
 		sn = obj["user"]["screen_name"]
 		idd = obj["id_str"]
 		#tweet = "@{}  Gracias por comunicarse con AndresBot :v ".format(sn)
 		#seed = self.getseed()
+		#print( text )
+		tweet = ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)"," ", text  ).split()) # remove mentions
+		tweet = re.sub(r'^https?:\/\/.*[\r\n]*', '', tweet , flags=re.MULTILINE) # remove urls 
 
+		if not tweet.endswith("."):
+			tweet = tweet + "."
+		print("to neural network")
+		print( tweet )
 		tweet = tww.sample_sequence(  text , 140 )
 		tweet =  enc.decode ( tweet[0] ).split(".")[1]
 		
